@@ -1,10 +1,10 @@
-package fr.paragoumba.bost;
+package fr.paragoumba.bost.music;
 
 import com.sedmelluq.discord.lavaplayer.source.AudioSourceManagers;
 import fr.paragoumba.bost.api.Plugin;
-import fr.paragoumba.bost.commands.PlayCommand;
-import fr.paragoumba.bost.commands.QueueCommand;
-import fr.paragoumba.bost.commands.SkipCommand;
+import fr.paragoumba.bost.music.commands.PlayCommand;
+import fr.paragoumba.bost.music.commands.QueueCommand;
+import fr.paragoumba.bost.music.commands.SkipCommand;
 
 import static fr.paragoumba.bost.CommandManager.registerCommand;
 

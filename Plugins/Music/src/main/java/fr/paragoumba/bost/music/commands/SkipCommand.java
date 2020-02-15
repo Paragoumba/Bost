@@ -1,7 +1,7 @@
-package fr.paragoumba.bost.commands;
+package fr.paragoumba.bost.music.commands;
 
-import fr.paragoumba.bost.Music;
-import fr.paragoumba.bost.QueuedAudioPlayer;
+import fr.paragoumba.bost.music.Music;
+import fr.paragoumba.bost.music.QueuedAudioPlayer;
 import fr.paragoumba.bost.api.Command;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.MessageChannel;

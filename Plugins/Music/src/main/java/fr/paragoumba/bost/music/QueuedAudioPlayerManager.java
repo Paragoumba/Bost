@@ -1,4 +1,4 @@
-package fr.paragoumba.bost;
+package fr.paragoumba.bost.music;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
