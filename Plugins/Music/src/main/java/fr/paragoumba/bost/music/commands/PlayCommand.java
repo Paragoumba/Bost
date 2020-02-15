@@ -4,7 +4,8 @@ import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
-import fr.paragoumba.bost.*;
+import fr.paragoumba.bost.Bot;
+import fr.paragoumba.bost.CommandManager;
 import fr.paragoumba.bost.api.Command;
 import fr.paragoumba.bost.music.*;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -110,8 +111,12 @@ public class PlayCommand extends Command {
             @Override
             public void noMatches(){
 
-                logger.info("nothing");
-                // Notify the user that we've got nothing
+                MessageEmbed message = new EmbedBuilder()
+                        .setTitle(":mag_right: Couldn't find a song")
+                        .setColor(Color.RED)
+                        .build();
+
+                channel.sendMessage(message).queue();
 
             }
 
