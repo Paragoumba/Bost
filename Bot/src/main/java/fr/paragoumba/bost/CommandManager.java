@@ -81,8 +81,8 @@ public class CommandManager {
 
         } catch (Exception e){
 
-            logger.severe("Fatal error exiting.");
-            e.printStackTrace();
+            logger.severe("Error while trying to execute command " + command
+                    + " with following parameters: [\"" + String.join("\", \"", args) + "\"].");
             e.printStackTrace();
 
         }
