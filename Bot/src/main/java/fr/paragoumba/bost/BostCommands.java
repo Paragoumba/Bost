@@ -27,7 +27,7 @@ public class BostCommands extends Plugin {
 
                 MessageEmbed message = new EmbedBuilder()
                         .setTitle(":white_check_mark: Shutting down")
-                        .setColor(Color.GREEN)
+                        .setColor(Color.SUCCESS)
                         .build();
 
                 channel.sendMessage(message).queue();
