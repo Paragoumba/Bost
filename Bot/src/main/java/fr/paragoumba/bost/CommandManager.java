@@ -87,4 +87,10 @@ public class CommandManager {
 
         }
     }
+
+    public static List<Command> getCommands(){
+
+        return new ArrayList<>(commands.values());
+
+    }
 }
