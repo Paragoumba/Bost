@@ -16,8 +16,6 @@ public class SkipCommand extends Command {
 
         player.skipTrack();
 
-        System.out.println("Skipping music.");
-
         return true;
 
     }
