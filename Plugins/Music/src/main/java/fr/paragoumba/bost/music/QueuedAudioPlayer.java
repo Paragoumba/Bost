@@ -28,8 +28,6 @@ public class QueuedAudioPlayer extends DefaultAudioPlayer {
         if (isPaused()){
 
             setPaused(false);
-            playTrack(queuedTracks.getFirst());
-            System.out.println("Playing track: " + queuedTracks.getFirst().getInfo().title);
 
         }
     }
