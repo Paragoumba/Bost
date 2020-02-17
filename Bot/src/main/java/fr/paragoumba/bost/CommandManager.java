@@ -61,16 +61,6 @@ public class CommandManager {
 
         if (commandHandler == null){
 
-            if (true) return;
-
-            MessageEmbed message = new EmbedBuilder()
-                    .setTitle(":x: Error")
-                    .setDescription("Command " + prefix + command + " not found.")
-                    .setColor(Color.RED)
-                    .build();
-
-            channel.sendMessage(message).queue();
-
             return;
 
         }
