@@ -2,6 +2,7 @@ package fr.paragoumba.bost.music.commands;
 
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
+import fr.paragoumba.bost.Color;
 import fr.paragoumba.bost.music.Music;
 import fr.paragoumba.bost.music.QueuedAudioPlayer;
 import fr.paragoumba.bost.api.Command;
@@ -10,7 +11,7 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 
-import java.awt.*;
+import java.util.LinkedList;
 
 public class QueueCommand extends Command {
 
@@ -20,38 +21,64 @@ public class QueueCommand extends Command {
         Music plugin = Music.getInstance();
         QueuedAudioPlayer player = plugin.getPlayer();
 
-        StringBuilder builder = new StringBuilder();
-        int i = 1;
+        LinkedList<AudioTrack> queuedTracks = player.getQueuedTracks();
 
-        for (AudioTrack track : player.getQueuedTracks()){
+        if (!queuedTracks.isEmpty()){
 
-            AudioTrackInfo trackInfo = track.getInfo();
+            StringBuilder builder = new StringBuilder();
+            int i = 1;
 
-            if (i == 1 && player.isPaused()){
+            for (AudioTrack track : queuedTracks){
 
-                builder
-                        .append("Track playing:\n")
-                        .append('[').append(trackInfo.title).append("](").append(trackInfo.uri).append(")\n\n");
+                if (i == 1 && !player.isPaused()){
 
-            } else {
+                    builder.append("Track playing:\n").append(formatTrack(track)).append('\n');
 
-                builder.append(i).append(". [").append(trackInfo.title).append("](").append(trackInfo.uri).append(")\n");
+                } else {
+
+                    builder.append(i).append(". ").append(formatTrack(track));
+
+                }
+
+                ++i;
 
             }
 
-            ++i;
+            MessageEmbed message = new EmbedBuilder()
+                    .setTitle(":headphones: Queued songs")
+                    .setDescription(builder)
+                    .setColor(Color.INFO)
+                    .build();
+
+            channel.sendMessage(message).queue();
+
+        } else {
+
+            MessageEmbed message = new EmbedBuilder()
+                    .setDescription(":mute: No queued songs")
+                    .setColor(Color.INFO)
+                    .build();
+
+            channel.sendMessage(message).queue();
 
         }
 
-        MessageEmbed message = new EmbedBuilder()
-                .setTitle(":headphones: Queued songs")
-                .setDescription(builder)
-                .setColor(Color.RED)
-                .build();
-
-        channel.sendMessage(message).queue();
-
         return true;
+
+    }
+
+    private String formatTrack(AudioTrack track){
+
+        Music plugin = Music.getInstance();
+        QueuedAudioPlayer player = plugin.getPlayer();
+
+        StringBuilder builder = new StringBuilder();
+        AudioTrackInfo trackInfo = track.getInfo();
+
+        builder.append('[').append(trackInfo.title).append("](").append(trackInfo.uri).append(") (")
+                .append(player.getDuration(track)).append(")\n");
+
+        return builder.toString();
 
     }
 }
