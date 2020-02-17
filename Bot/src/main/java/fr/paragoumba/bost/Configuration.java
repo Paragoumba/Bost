@@ -45,13 +45,13 @@ public class Configuration {
 
     }
 
-    Object setString(String key, String value){
+    public Object setString(String key, String value){
 
         return customConfig.put(key, value);
 
     }
 
-    String getString(String key){
+    public String getString(String key){
 
         return (String) customConfig.get(key);
 
@@ -75,7 +75,7 @@ public class Configuration {
         }
     }
 
-    private void save(File configFile){
+    public void save(File configFile){
 
         DumperOptions options = new DumperOptions();
 
