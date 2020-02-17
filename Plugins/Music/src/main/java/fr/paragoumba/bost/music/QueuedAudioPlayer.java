@@ -1,9 +1,7 @@
 package fr.paragoumba.bost.music;
 
-import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
-import com.sedmelluq.discord.lavaplayer.player.event.AudioEventAdapter;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 
@@ -19,32 +17,6 @@ public class QueuedAudioPlayer extends DefaultAudioPlayer {
 
         setPaused(true);
 
-        addListener(new AudioEventAdapter(){
-
-            @Override
-            public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason){
-
-                super.onTrackEnd(player, track, endReason);
-
-                System.out.println("onTrackEnd: " + track.getInfo().title + " (" + endReason.toString() + ")");
-
-                if (!queuedTracks.isEmpty()){
-
-                    queuedTracks.removeFirst().stop();
-
-                    if (!queuedTracks.isEmpty()){
-
-                        playTrack(queuedTracks.getFirst());
-
-                    }
-
-                } else {
-
-                    setPaused(true);
-
-                }
-            }
-        });
     }
 
     private LinkedList<AudioTrack> queuedTracks;
