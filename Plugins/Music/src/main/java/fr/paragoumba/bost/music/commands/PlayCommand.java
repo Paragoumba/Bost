@@ -27,6 +27,15 @@ public class PlayCommand extends Command {
 
         Music plugin = Music.getInstance();
         QueuedAudioPlayer player = plugin.getPlayer();
+
+        if (args.length < 1){
+
+            player.setPaused(!player.isPaused());
+
+            return true;
+
+        }
+
         QueuedAudioPlayerManager playerManager = plugin.getPlayerManager();
 
         TrackScheduler trackScheduler = new TrackScheduler();
