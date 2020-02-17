@@ -1,6 +1,7 @@
 package fr.paragoumba.bost;
 
 import fr.paragoumba.bost.api.Command;
+import fr.paragoumba.bost.api.CommandInfo;
 import fr.paragoumba.bost.api.Plugin;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;

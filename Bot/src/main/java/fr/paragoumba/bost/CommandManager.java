@@ -1,6 +1,7 @@
 package fr.paragoumba.bost;
 
 import fr.paragoumba.bost.api.Command;
+import fr.paragoumba.bost.api.CommandInfo;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.*;
 
@@ -24,6 +25,7 @@ public class CommandManager {
 
         }
 
+        commandHandler.setInfo(new CommandInfo(command, usage));
         commands.put(command, commandHandler);
 
     }
