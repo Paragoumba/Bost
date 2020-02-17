@@ -5,9 +5,7 @@ import fr.paragoumba.bost.api.CommandInfo;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.*;
 
-import java.awt.*;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 import java.util.logging.Logger;
 
 public class CommandManager {
@@ -18,12 +16,20 @@ public class CommandManager {
 
     public static void registerCommand(String command, Command commandHandler){
 
+        registerCommand(command, commandHandler, "");
+
+    }
+
+    public static void registerCommand(String command, Command commandHandler, String usage){
+
         if (commands.containsKey(command)){
 
             Logger.getGlobal().warning("Command '" + command + "' already exists.");
             return;
 
         }
+
+        usage = usage.replaceAll("%p", prefix).replaceAll("%c", command);
 
         commandHandler.setInfo(new CommandInfo(command, usage));
         commands.put(command, commandHandler);
