@@ -37,14 +37,13 @@ public class QueuedAudioPlayer extends DefaultAudioPlayer {
 
         super.setPaused(value);
 
-        if (!queuedTracks.isEmpty()){
-            if (value){
+        if (!(queuedTracks.isEmpty() || value)){
 
-                queuedTracks.getFirst().stop();
+            AudioTrack track = queuedTracks.getFirst();
 
-            } else {
+            if (track.getState() == AudioTrackState.INACTIVE){
 
-                playTrack(queuedTracks.getFirst());
+                playTrack(track);
 
             }
         }
