@@ -51,19 +51,24 @@ public class QueuedAudioPlayer extends DefaultAudioPlayer {
 
     public void skipTrack(){
 
-        System.out.println("skipTrack");
-
-        System.out.println("Queue size: " + queuedTracks.size());
-
         if (!queuedTracks.isEmpty()){
 
-            System.out.println("skipTrack: not empty");
-            queuedTracks.removeFirst().stop();
+            queuedTracks.removeFirst();
 
             if (!queuedTracks.isEmpty()){
 
-                System.out.println("skipTrack: not empty2");
-                playTrack(queuedTracks.getFirst());
+                AudioTrack nextTrack = queuedTracks.getFirst();
+
+                if (nextTrack.getState() != AudioTrackState.PLAYING
+                        && nextTrack.getState() != AudioTrackState.LOADING){
+
+                    playTrack(nextTrack);
+
+                }
+
+            } else {
+
+                setPaused(true);
 
             }
         }
