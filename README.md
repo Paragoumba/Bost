@@ -1,4 +1,4 @@
-<p align="center">
+<p dir="center">
     <img src="res/logo-bost480x270.png" alt="Bost logo">
 </p>
 
