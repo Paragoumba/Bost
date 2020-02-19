@@ -19,7 +19,7 @@ public class Configuration {
     public Configuration(String configPath){
 
         token = "";
-        customConfig = new HashMap<>();
+        customConfig = new LinkedHashMap<>();
 
         File configFile = new File(configPath);
 
@@ -37,7 +37,7 @@ public class Configuration {
 
     private static final Logger logger = Bot.getLogger();
     private String token;
-    private HashMap<String, Object> customConfig;
+    private LinkedHashMap<Object, Object> customConfig;
 
     String getToken(){
 
@@ -65,7 +65,8 @@ public class Configuration {
 
             LinkedHashMap<Object, Object> configMap = yaml.load(new FileReader(configFile));
 
-            token = (String) configMap.get("token");
+            token = (String) configMap.remove("token");
+            customConfig = configMap;
 
         } catch (FileNotFoundException e){
 
@@ -87,7 +88,9 @@ public class Configuration {
 
         try {
 
-            yaml.dump(this, new FileWriter(configFile));
+            customConfig.put("token", token);
+
+            yaml.dump(customConfig, new FileWriter(configFile));
 
         } catch (IOException e){
 

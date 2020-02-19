@@ -10,8 +10,8 @@ import java.util.logging.Logger;
 public class Bot {
 
     private static JDA jda;
-    private static Configuration config = new Configuration();
     private static Logger logger = Logger.getGlobal();
+    private static Configuration config = new Configuration();
 
     public static void main(String[] args){
 
