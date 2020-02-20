@@ -59,12 +59,15 @@ public class PluginManager {
                                 URLClassLoader classLoader = new URLClassLoader(new URL[]{file.toURI().toURL()}, Thread.currentThread().getContextClassLoader());
                                 Plugin plugin = (Plugin) Class.forName(props.get("main"), true, classLoader).getConstructor().newInstance();
 
-                                Logger.getLogger("stdout").info("Loaded plugin " + props.get("name") + " (v" + props.get("version") + ") by " + props.get("author"));
+                                String version = props.get("version");
+
+                                logger.info("Loaded plugin " + props.get("name") + (version != null ? " (v" + version + ")" : "") + " by " + props.get("author"));
                                 plugins.add(plugin);
 
-                            } catch (IllegalAccessException | ClassNotFoundException | InstantiationException | InvocationTargetException | NoSuchMethodException e){
+                            } catch (IllegalAccessException | ClassNotFoundException | InstantiationException |
+                                    InvocationTargetException | NoSuchMethodException e){
 
-                                System.err.println("Error in loading main class. Verify that it extends Plugin.");
+                                logger.warning("Error in loading main class. Verify that it extends Plugin.");
                                 e.printStackTrace();
 
                             } catch (ClassCastException e){
@@ -76,7 +79,7 @@ public class PluginManager {
 
                         } else {
 
-                            System.err.println("The file plugin.yml is missing or corrupted!");
+                            logger.warning('[' + jarFile.getName() + "] The file plugin.yml is missing or corrupted!");
 
                         }
                     }
