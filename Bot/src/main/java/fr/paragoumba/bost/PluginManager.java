@@ -68,12 +68,10 @@ public class PluginManager {
                                     InvocationTargetException | NoSuchMethodException e){
 
                                 logger.warning("Error in loading main class. Verify that it extends Plugin.");
-                                e.printStackTrace();
 
                             } catch (ClassCastException e){
 
-                                // TODO Log correctly
-                                e.printStackTrace();
+                                logger.warning(e.getLocalizedMessage());
 
                             }
 
