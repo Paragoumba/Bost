@@ -71,7 +71,7 @@ public class CommandManager {
 
                 MessageEmbed message = new EmbedBuilder()
                         .setTitle(":x: Wrong arguments")
-                        .setDescription("Usage:")
+                        .setDescription(commandHandler.getInfo().getUsage())
                         .setColor(Color.ERROR)
                         .build();
 
