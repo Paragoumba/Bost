@@ -36,6 +36,7 @@ public class Bot {
         } catch (Exception e){
 
             logger.severe("Fatal error exiting.");
+            logger.severe(e.getLocalizedMessage());
             e.printStackTrace();
             System.exit(1);
 
