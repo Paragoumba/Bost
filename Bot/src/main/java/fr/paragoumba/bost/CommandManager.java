@@ -36,7 +36,7 @@ public class CommandManager {
 
     }
 
-    static void interpretMessageAsCommand(Message message){
+    public static void interpretMessageAsCommand(Message message){
 
         String messageContent = message.getContentRaw();
 

@@ -1,4 +1,4 @@
-package fr.paragoumba.bost;
+package fr.paragoumba.bost.events;
 
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
