@@ -37,7 +37,7 @@ public class BostCommands extends Plugin {
                 return true;
 
             }
-        }, "%p%c - Stops the bot.");
+        }, "\t`%p%c` - Stops the bot.");
 
         registerCommand("help", new Command(){
 
@@ -66,6 +66,6 @@ public class BostCommands extends Plugin {
                 return true;
 
             }
-        }, "%p%c - Displays the usages of the different commands.");
+        }, "\t`%p%c` - Displays the usages of the different commands.");
     }
 }
