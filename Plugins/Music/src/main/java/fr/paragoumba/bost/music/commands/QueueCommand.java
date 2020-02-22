@@ -2,7 +2,7 @@ package fr.paragoumba.bost.music.commands;
 
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
-import fr.paragoumba.bost.Color;
+import fr.paragoumba.bost.EmbedColor;
 import fr.paragoumba.bost.music.Music;
 import fr.paragoumba.bost.music.QueuedAudioPlayer;
 import fr.paragoumba.bost.api.Command;
@@ -47,7 +47,7 @@ public class QueueCommand extends Command {
             MessageEmbed message = new EmbedBuilder()
                     .setTitle(":headphones: Queued songs")
                     .setDescription(builder)
-                    .setColor(Color.INFO)
+                    .setColor(EmbedColor.INFO)
                     .build();
 
             channel.sendMessage(message).queue();
@@ -56,7 +56,7 @@ public class QueueCommand extends Command {
 
             MessageEmbed message = new EmbedBuilder()
                     .setDescription(":mute: No queued songs")
-                    .setColor(Color.INFO)
+                    .setColor(EmbedColor.INFO)
                     .build();
 
             channel.sendMessage(message).queue();

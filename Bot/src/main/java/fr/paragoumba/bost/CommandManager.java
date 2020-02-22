@@ -72,7 +72,7 @@ public class CommandManager {
                 MessageEmbed message = new EmbedBuilder()
                         .setTitle(":x: Wrong arguments")
                         .setDescription(commandHandler.getInfo().getUsage())
-                        .setColor(Color.ERROR)
+                        .setColor(EmbedColor.ERROR)
                         .build();
 
                 channel.sendMessage(message).queue();

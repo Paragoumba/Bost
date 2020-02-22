@@ -4,7 +4,7 @@ import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import fr.paragoumba.bost.Bot;
-import fr.paragoumba.bost.Color;
+import fr.paragoumba.bost.EmbedColor;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.MessageChannel;
@@ -83,7 +83,7 @@ public class AudioLoadResultHandler implements com.sedmelluq.discord.lavaplayer.
         MessageEmbed message = new EmbedBuilder()
                 .setTitle(":mag_right: Couldn't find a song")
                 .setDescription("Identifier: '" + identifier + '\'')
-                .setColor(Color.ERROR)
+                .setColor(EmbedColor.ERROR)
                 .build();
 
         channel.sendMessage(message).queue();

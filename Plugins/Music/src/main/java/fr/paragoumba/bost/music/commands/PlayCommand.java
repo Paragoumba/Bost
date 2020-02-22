@@ -1,6 +1,6 @@
 package fr.paragoumba.bost.music.commands;
 
-import fr.paragoumba.bost.Color;
+import fr.paragoumba.bost.EmbedColor;
 import fr.paragoumba.bost.api.Command;
 import fr.paragoumba.bost.music.*;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -37,7 +37,7 @@ public class PlayCommand extends Command {
             MessageEmbed message = new EmbedBuilder()
                     .setTitle(":x: You are not in a voice channel")
                     .setDescription("Connect to a voice channel to play a music")
-                    .setColor(Color.ERROR)
+                    .setColor(EmbedColor.ERROR)
                     .build();
 
             channel.sendMessage(message).queue();
