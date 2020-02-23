@@ -14,10 +14,17 @@
     },
     "author": {
       "type": "string"
+    },
+    "permissions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
     }
   },
   "required": [
     "name",
-    "main"
+    "main",
+    "author"
   ]
 }

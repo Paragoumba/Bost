@@ -71,4 +71,4 @@ main: your.package.MainClassOfYourPlugin
 version: "0.1"
 author: Paragoumba
 ```
-You can validate your file plugin.yml with the JSON schema [bost-schema.json](bost-schema.json).
+You can validate your file plugin.yml with the JSON schema [bost-schema.json](bost-plugin-schema.json).
