@@ -142,17 +142,13 @@ public class AudioLoadResultHandler implements com.sedmelluq.discord.lavaplayer.
         AudioManager audioManager = voiceState.getGuild().getAudioManager();
 
         audioManager.setSendingHandler(new AudioPlayerSendHandler(player));
-
-        // Connect to the voice channel
         audioManager.openAudioConnection(voiceState.getChannel());
 
     }
 
     private void quitChannel(){
 
-        AudioManager audioManager = voiceState.getGuild().getAudioManager();
-
-        audioManager.closeAudioConnection();
+        voiceState.getGuild().getAudioManager().closeAudioConnection();
 
     }
 
