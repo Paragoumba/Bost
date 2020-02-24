@@ -17,7 +17,6 @@ import java.util.logging.Logger;
 
 public class AudioLoadResultHandler implements com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler {
 
-    private static final Logger logger = Bot.getLogger();
     private static final QueuedAudioPlayer player = Music.getInstance().getPlayer();
     private static final String ytThumbnailUrl = "https://img.youtube.com/vi/%i/hqdefault.jpg";
 
@@ -35,8 +34,6 @@ public class AudioLoadResultHandler implements com.sedmelluq.discord.lavaplayer.
 
     @Override
     public void trackLoaded(AudioTrack track){
-
-        logger.info(track.getIdentifier() + " (" + track.getDuration() + ")");
 
         if (!isConnectedToChannel()){
 
@@ -72,8 +69,6 @@ public class AudioLoadResultHandler implements com.sedmelluq.discord.lavaplayer.
             int i = 1;
 
             for (AudioTrack track : tracks){
-
-                logger.info('\t' + "- " + i + ": " + track.getInfo().title + " (" + QueuedAudioPlayer.getDuration(track) + ")");
 
                 player.queueTrack(track);
 
