@@ -104,11 +104,11 @@ public class QueuedAudioPlayer extends DefaultAudioPlayer {
 
         }
 
-        float duration = (float) track.getDuration() / 60000;
+        float duration = (float) track.getDuration() / 60_000;
 
         return format
                 .replaceAll("%m", String.valueOf((int) duration))
-                .replaceAll("%s", String.valueOf((int) (duration % 1 * 60)));
+                .replaceAll("%s", String.valueOf((int) duration * 60));
 
     }
 }
