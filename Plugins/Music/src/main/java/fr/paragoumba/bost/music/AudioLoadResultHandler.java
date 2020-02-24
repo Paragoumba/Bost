@@ -3,6 +3,7 @@ package fr.paragoumba.bost.music;
 import com.sedmelluq.discord.lavaplayer.tools.FriendlyException;
 import com.sedmelluq.discord.lavaplayer.track.AudioPlaylist;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
+import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 import fr.paragoumba.bost.Bot;
 import fr.paragoumba.bost.EmbedColor;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -18,6 +19,7 @@ public class AudioLoadResultHandler implements com.sedmelluq.discord.lavaplayer.
 
     private static final Logger logger = Bot.getLogger();
     private static final QueuedAudioPlayer player = Music.getInstance().getPlayer();
+    private static final String ytThumbnailUrl = "https://img.youtube.com/vi/%i/hqdefault.jpg";
 
     public AudioLoadResultHandler(GuildVoiceState voiceState, String identifier, MessageChannel channel){
 
@@ -43,6 +45,7 @@ public class AudioLoadResultHandler implements com.sedmelluq.discord.lavaplayer.
         }
 
         player.queueTrack(track);
+        sendTrackEmbed(track);
 
     }
 
@@ -59,7 +62,10 @@ public class AudioLoadResultHandler implements com.sedmelluq.discord.lavaplayer.
 
         if (playlist.isSearchResult()){
 
-            player.queueTrack(tracks.get(0));
+            AudioTrack selectedTrack = tracks.get(0);
+
+            player.queueTrack(selectedTrack);
+            sendTrackEmbed(selectedTrack);
 
         } else {
 
@@ -67,7 +73,7 @@ public class AudioLoadResultHandler implements com.sedmelluq.discord.lavaplayer.
 
             for (AudioTrack track : tracks){
 
-                logger.info('\t' + "- " + i + ": " + track.getInfo().title + " (" + player.getDuration(track) + ")");
+                logger.info('\t' + "- " + i + ": " + track.getInfo().title + " (" + QueuedAudioPlayer.getDuration(track) + ")");
 
                 player.queueTrack(track);
 
@@ -112,6 +118,23 @@ public class AudioLoadResultHandler implements com.sedmelluq.discord.lavaplayer.
             channel.sendMessage(message).queue();
 
         }
+    }
+
+    private void sendTrackEmbed(AudioTrack track){
+
+        AudioTrackInfo trackInfo = track.getInfo();
+
+        MessageEmbed message = new EmbedBuilder()
+                .setTitle("Added track to queue")
+                .setDescription('[' + trackInfo.title + "](" + trackInfo.uri + ')')
+                .setThumbnail(ytThumbnailUrl.replaceAll("%i", trackInfo.identifier))
+                .addField("Channel", trackInfo.author, true)
+                .addField("Duration", QueuedAudioPlayer.getDuration(track), true)
+                .setColor(EmbedColor.INFO)
+                .build();
+
+        channel.sendMessage(message).queue();
+
     }
 
     private void joinChannel(){

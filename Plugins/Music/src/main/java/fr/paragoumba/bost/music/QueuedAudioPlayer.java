@@ -94,9 +94,9 @@ public class QueuedAudioPlayer extends DefaultAudioPlayer {
 
     }
 
-    public String getDuration(AudioTrack track){
+    public static String getDuration(AudioTrack track){
 
-        String format = Bot.getConfig().getString("music.timeformat");
+        String format = Music.getInstance().getConfig().getString("timeformat");
 
         if (format == null){
 
@@ -108,7 +108,7 @@ public class QueuedAudioPlayer extends DefaultAudioPlayer {
 
         return format
                 .replaceAll("%m", String.valueOf((int) duration))
-                .replaceAll("%s", String.valueOf((int) duration * 60));
+                .replaceAll("%s", String.valueOf((int) (duration % 1 * 60)));
 
     }
 }
