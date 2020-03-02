@@ -23,12 +23,12 @@ public class BostCommands extends Plugin {
             @Override
             public boolean execute(String command, String[] args, Member sender, MessageChannel channel){
 
-                MessageEmbed message = new EmbedBuilder()
+                /*MessageEmbed message = new EmbedBuilder()
                         .setTitle(":white_check_mark: Shutting down")
                         .setColor(EmbedColor.SUCCESS)
                         .build();
 
-                channel.sendMessage(message).queue();
+                channel.sendMessage(message).queue();*/
 
                 jda.shutdown();
 
