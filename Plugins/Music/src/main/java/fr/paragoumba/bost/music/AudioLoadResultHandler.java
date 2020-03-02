@@ -75,6 +75,13 @@ public class AudioLoadResultHandler implements com.sedmelluq.discord.lavaplayer.
                 ++i;
 
             }
+
+            MessageEmbed message = new EmbedBuilder()
+                    .setTitle(":cd: Loaded " + i + " tracks")
+                    .build();
+
+            channel.sendMessage(message).queue();
+
         }
     }
 
