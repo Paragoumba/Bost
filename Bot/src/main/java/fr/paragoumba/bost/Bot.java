@@ -12,13 +12,14 @@ public class Bot {
 
     private static JDA jda;
     private static final Logger logger = Logger.getGlobal();
-    private static final Configuration config = new Configuration();
 
     public static void main(String[] args){
 
         try {
 
-            jda = new JDABuilder(config.getToken())
+            Configuration config = new Configuration();
+
+            jda = new JDABuilder(config.getString("token"))
                     .addEventListeners(new MessageReceivedEventListener())
                     .setActivity(Activity.listening("4'33\" by John Cage"))
                     .build();
@@ -46,12 +47,6 @@ public class Bot {
     public static JDA getJda(){
 
         return jda;
-
-    }
-
-    public static Configuration getConfig(){
-
-        return config;
 
     }
 
