@@ -87,7 +87,9 @@ public class QueuedAudioPlayer extends DefaultAudioPlayer {
 
     }
 
-    public void removeTrack(int i){
+    public AudioTrack removeTrack(int i){
+
+        if (i >= 0 && i < queuedTracks.size()){
 
             return queuedTracks.remove(i);
 
