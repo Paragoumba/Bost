@@ -1,10 +1,13 @@
 package fr.paragoumba.bost.music.commands;
 
+import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import fr.paragoumba.bost.music.Music;
 import fr.paragoumba.bost.music.QueuedAudioPlayer;
 import fr.paragoumba.bost.api.Command;
+import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 
 public class SkipCommand extends Command {
 
@@ -25,7 +28,16 @@ public class SkipCommand extends Command {
         Music plugin = Music.getInstance();
         QueuedAudioPlayer player = plugin.getPlayer();
 
-        player.skipTrack();
+        AudioTrack skippedTrack = trackNumber == null ?
+                player.skipTrack() :
+                player.removeTrack(trackNumber);
+
+        MessageEmbed message = new EmbedBuilder()
+                .setTitle(":next_track: Skipped track")
+                .setDescription("Skipped " + skippedTrack.getInfo().title)
+                .build();
+
+        channel.sendMessage(message).queue();
 
         return true;
 
