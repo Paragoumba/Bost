@@ -86,14 +86,11 @@ public class QueueCommand extends Command {
 
     private String formatTrack(AudioTrack track){
 
-        Music plugin = Music.getInstance();
-        QueuedAudioPlayer player = plugin.getPlayer();
-
         StringBuilder builder = new StringBuilder();
         AudioTrackInfo trackInfo = track.getInfo();
 
         builder.append('[').append(trackInfo.title).append("](").append(trackInfo.uri).append(") (")
-                .append(player.getDuration(track)).append(")\n");
+                .append(QueuedAudioPlayer.getDuration(track)).append(")\n");
 
         return builder.toString();
 
