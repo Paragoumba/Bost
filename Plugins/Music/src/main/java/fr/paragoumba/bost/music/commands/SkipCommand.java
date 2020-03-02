@@ -11,6 +11,17 @@ public class SkipCommand extends Command {
     @Override
     public boolean execute(String command, String[] args, Member sender, MessageChannel channel){
 
+        Integer trackNumber = null;
+
+        if (args.length > 0){
+
+            try {
+
+                trackNumber = Integer.parseInt(args[0]);
+
+            } catch (NumberFormatException ignored){}
+        }
+
         Music plugin = Music.getInstance();
         QueuedAudioPlayer player = plugin.getPlayer();
 

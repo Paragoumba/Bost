@@ -19,9 +19,7 @@ public class Music extends Plugin {
     public void onEnable(){
 
         instance = this;
-
         playerManager = new QueuedAudioPlayerManager();
-
         player = (QueuedAudioPlayer) playerManager.createPlayer();
 
         registerCommand("play", new PlayCommand(),
@@ -29,7 +27,8 @@ public class Music extends Plugin {
                         "\t`%p%c ytsearch: args` - Play the first track corresponding to `args` on Youtube.\n" +
                         "\t`%p%c id` - Play the video with the corresponding id.");
         registerCommand("skip", new SkipCommand(),
-                "\t`%p%c` - Skip the currently playing track.");
+                "\t`%p%c` - Skip the currently playing track.\n" +
+                        "\t`%p%c n` - Skip the nth track.");
         registerCommand("queue", new QueueCommand(),
                 "\t`%p%c` - List the queued tracks.");
         registerCommand("stop", new StopCommand(),
