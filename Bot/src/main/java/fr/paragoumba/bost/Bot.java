@@ -1,6 +1,7 @@
 package fr.paragoumba.bost;
 
 import fr.paragoumba.bost.events.MessageReceivedEventListener;
+import fr.paragoumba.bost.events.ShutdownEventListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
@@ -22,6 +23,7 @@ public class Bot {
 
             jda = new JDABuilder(config.getString("token"))
                     .addEventListeners(new MessageReceivedEventListener())
+                    .addEventListeners(new ShutdownEventListener())
                     .setActivity(Activity.listening("4'33\" by John Cage"))
                     .build();
 
