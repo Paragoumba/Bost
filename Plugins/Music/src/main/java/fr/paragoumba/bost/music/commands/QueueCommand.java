@@ -26,31 +26,36 @@ public class QueueCommand extends Command {
         if (!queuedTracks.isEmpty()){
 
             StringBuilder builder = new StringBuilder();
-            int i = 1;
+            int i = 0;
 
             for (AudioTrack track : queuedTracks){
 
-                if (i == 1 && !player.isPaused()){
+                StringBuilder trackBuilder = new StringBuilder();
 
-                    builder.append("Track playing:\n").append(formatTrack(track)).append('\n');
+                if (i == 0 && !player.isPaused()){
+
+                    trackBuilder.append("Track playing:\n").append(formatTrack(track)).append('\n');
 
                 } else {
 
-                    builder.append(i).append(". ").append(formatTrack(track));
+                    trackBuilder.append(i).append(". ").append(formatTrack(track));
 
                 }
+
+                if (builder.length() + trackBuilder.length() > 2048){
+
+                    sendQueueMessage(channel, builder.toString());
+                    builder = new StringBuilder();
+
+                }
+
+                builder.append(trackBuilder);
 
                 ++i;
 
             }
 
-            MessageEmbed message = new EmbedBuilder()
-                    .setTitle(":headphones: Queued songs")
-                    .setDescription(builder)
-                    .setColor(EmbedColor.INFO)
-                    .build();
-
-            channel.sendMessage(message).queue();
+            sendQueueMessage(channel, builder.toString());
 
         } else {
 
@@ -64,6 +69,18 @@ public class QueueCommand extends Command {
         }
 
         return true;
+
+    }
+
+    private void sendQueueMessage(MessageChannel channel, String description){
+
+        MessageEmbed message = new EmbedBuilder()
+                .setTitle(":headphones: Queued songs")
+                .setDescription(description)
+                .setColor(EmbedColor.INFO)
+                .build();
+
+        channel.sendMessage(message).queue();
 
     }
 
