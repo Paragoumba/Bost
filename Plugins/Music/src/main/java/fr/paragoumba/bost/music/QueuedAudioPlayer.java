@@ -50,11 +50,11 @@ public class QueuedAudioPlayer extends DefaultAudioPlayer {
         }
     }
 
-    public void skipTrack(){
+    public AudioTrack skipTrack(){
 
         if (!queuedTracks.isEmpty()){
 
-            queuedTracks.removeFirst();
+            AudioTrack skippedTrack = queuedTracks.removeFirst();
 
             if (!queuedTracks.isEmpty()){
 
@@ -72,7 +72,12 @@ public class QueuedAudioPlayer extends DefaultAudioPlayer {
                 setPaused(true);
 
             }
+
+            return skippedTrack;
         }
+
+        return null;
+
     }
 
     public LinkedList<AudioTrack> getQueuedTracks(){
@@ -84,7 +89,11 @@ public class QueuedAudioPlayer extends DefaultAudioPlayer {
 
     public void removeTrack(int i){
 
-        queuedTracks.remove(i);
+            return queuedTracks.remove(i);
+
+        }
+
+        return null;
 
     }
 
