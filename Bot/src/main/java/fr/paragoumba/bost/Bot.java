@@ -6,6 +6,7 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
 
 import javax.security.auth.login.LoginException;
+import java.io.IOException;
 import java.util.logging.Logger;
 
 public class Bot {
@@ -29,7 +30,7 @@ public class Bot {
             PluginManager.loadPlugins();
             PluginManager.enablePlugins();
 
-        } catch (LoginException e){
+        } catch (LoginException | IOException e){
 
             logger.severe(e.getLocalizedMessage());
             System.exit(1);
