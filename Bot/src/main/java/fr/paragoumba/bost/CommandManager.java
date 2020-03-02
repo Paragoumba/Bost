@@ -7,6 +7,8 @@ import net.dv8tion.jda.api.entities.*;
 
 import java.util.*;
 import java.util.logging.Logger;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class CommandManager {
 
@@ -42,7 +44,18 @@ public class CommandManager {
 
         if (messageContent.startsWith(prefix)){
 
-            String[] args = messageContent.replaceFirst(prefix, "").split(" ");
+            List<String> argsList = new ArrayList<>();
+            Matcher m = Pattern.compile("([^\"]\\S*|\".+?\")\\s*").matcher(messageContent);
+
+            while (m.find()){
+
+                argsList.add(m.group(1).replace("\"", ""));
+
+            }
+
+            String[] args = argsList.toArray(new String[0]);
+
+            args[0] = args[0].replaceFirst(prefix, "");
 
             executeCommand(
                     args[0],
