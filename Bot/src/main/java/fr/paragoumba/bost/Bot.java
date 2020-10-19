@@ -5,6 +5,10 @@ import fr.paragoumba.bost.events.ShutdownEventListener;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.Activity;
+import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.utils.ChunkingFilter;
+import net.dv8tion.jda.api.utils.MemberCachePolicy;
+import net.dv8tion.jda.api.utils.cache.CacheFlag;
 
 import javax.security.auth.login.LoginException;
 import java.io.IOException;
@@ -21,7 +25,10 @@ public class Bot {
 
             Configuration config = new Configuration();
 
-            jda = new JDABuilder(config.getString("token"))
+            jda = JDABuilder.create(config.getString("token"), GatewayIntent.GUILD_MESSAGES, GatewayIntent.GUILD_MESSAGE_REACTIONS, GatewayIntent.GUILD_VOICE_STATES)
+                    .setChunkingFilter(ChunkingFilter.NONE)
+                    .setMemberCachePolicy(MemberCachePolicy.NONE)
+                    .disableCache(CacheFlag.ACTIVITY, CacheFlag.EMOTE, CacheFlag.CLIENT_STATUS)
                     .addEventListeners(new MessageReceivedEventListener())
                     .addEventListeners(new ShutdownEventListener())
                     .setActivity(Activity.listening("4'33\" by John Cage"))
