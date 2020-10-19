@@ -23,16 +23,16 @@ public class Music extends Plugin {
         player = (QueuedAudioPlayer) playerManager.createPlayer();
 
         registerCommand("play", new PlayCommand(),
-                "\t`%p%c` - Pauses the player. If it is already paused, resumes the queue.\n" +
-                        "\t`%p%c ytsearch: args` - Play the first track corresponding to `args` on Youtube.\n" +
-                        "\t`%p%c id` - Play the video with the corresponding id.");
+                "`%p%c` - Pauses the player. If it is already paused, resumes the queue.",
+                        "`%p%c ytsearch: args` - Play the first track corresponding to `args` on Youtube.",
+                        "`%p%c id` - Play the video with the corresponding id.");
         registerCommand("skip", new SkipCommand(),
-                "\t`%p%c` - Skip the currently playing track.\n" +
-                        "\t`%p%c n` - Skip the nth track.");
+                "`%p%c` - Skip the currently playing track.",
+                        "`%p%c n` - Skip the nth track.");
         registerCommand("queue", new QueueCommand(),
-                "\t`%p%c` - List the queued tracks.");
+                "`%p%c` - List the queued tracks.");
         registerCommand("stop", new StopCommand(),
-                "\t`%p%c` - Stop the player and clear the queue.");
+                "`%p%c` - Stop the player and clear the queue.");
 
     }
 

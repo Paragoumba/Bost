@@ -2,15 +2,15 @@ package fr.paragoumba.bost.api;
 
 public class CommandInfo {
 
-    public CommandInfo(String command, String usage){
+    public CommandInfo(String command, String... usage){
 
         this.command = command;
         this.usage = usage;
 
     }
 
-    private String command;
-    private String usage;
+    private final String command;
+    private final String[] usage;
 
     public String getCommand(){
 
@@ -18,7 +18,7 @@ public class CommandInfo {
 
     }
 
-    public String getUsage(){
+    public String[] getUsage(){
 
         return usage;
 

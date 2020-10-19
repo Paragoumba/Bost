@@ -3,12 +3,19 @@ package fr.paragoumba.bost;
 import fr.paragoumba.bost.api.Command;
 import fr.paragoumba.bost.api.CommandInfo;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.entities.Member;
+import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Collectors;
 
 public class CommandManager {
 
@@ -22,7 +29,7 @@ public class CommandManager {
 
     }
 
-    public static void registerCommand(String command, Command commandHandler, String usage){
+    public static void registerCommand(String command, Command commandHandler, String... usage){
 
         if (commands.containsKey(command)){
 
@@ -31,7 +38,7 @@ public class CommandManager {
 
         }
 
-        usage = usage.replaceAll("%p", prefix).replaceAll("%c", command);
+        usage = (String[]) Arrays.stream(usage).map(s -> s.replaceAll("%p", prefix).replaceAll("%c", command)).toArray();
 
         commandHandler.setInfo(new CommandInfo(command, usage));
         commands.put(command, commandHandler);
@@ -84,7 +91,7 @@ public class CommandManager {
 
                 MessageEmbed message = new EmbedBuilder()
                         .setTitle(":x: Wrong arguments")
-                        .setDescription(commandHandler.getInfo().getUsage())
+                        .setDescription(Arrays.stream(commandHandler.getInfo().getUsage()).map(s -> '\t' + s + '\n').collect(Collectors.joining()))
                         .setColor(EmbedColor.ERROR)
                         .build();
 
