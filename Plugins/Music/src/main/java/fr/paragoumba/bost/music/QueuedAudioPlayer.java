@@ -4,7 +4,6 @@ import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackState;
-import fr.paragoumba.bost.Bot;
 
 import java.util.LinkedList;
 
@@ -20,7 +19,7 @@ public class QueuedAudioPlayer extends DefaultAudioPlayer {
 
     }
 
-    private LinkedList<AudioTrack> queuedTracks;
+    private final LinkedList<AudioTrack> queuedTracks;
 
     public void queueTrack(AudioTrack track){
 
@@ -82,7 +81,6 @@ public class QueuedAudioPlayer extends DefaultAudioPlayer {
 
     public LinkedList<AudioTrack> getQueuedTracks(){
 
-        //return (LinkedList<AudioTrack>) queuedTracks.clone();
         return queuedTracks;
 
     }
