@@ -38,7 +38,11 @@ public class CommandManager {
 
         }
 
-        usage = (String[]) Arrays.stream(usage).map(s -> s.replaceAll("%p", prefix).replaceAll("%c", command)).toArray();
+        for (int i = 0; i < usage.length; ++i){
+
+            usage[i] = usage[i].replaceAll("%p", prefix).replaceAll("%c", command);
+
+        }
 
         commandHandler.setInfo(new CommandInfo(command, usage));
         commands.put(command, commandHandler);
