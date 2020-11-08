@@ -2,6 +2,7 @@ package fr.paragoumba.bost;
 
 import fr.paragoumba.bost.api.Plugin;
 import fr.paragoumba.bost.api.PluginInfo;
+import org.slf4j.Logger;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.File;
@@ -12,7 +13,6 @@ import java.net.URLClassLoader;
 import java.util.*;
 import java.util.jar.JarEntry;
 import java.util.jar.JarFile;
-import java.util.logging.Logger;
 
 public class PluginManager {
 
@@ -74,18 +74,18 @@ public class PluginManager {
 
                         } else {
 
-                            logger.warning('[' + jarFile.getName() + "] The file plugin.yml is missing or corrupted!");
+                            logger.warn('[' + jarFile.getName() + "] The file plugin.yml is missing or corrupted!");
 
                         }
 
                     } catch (IllegalAccessException | ClassNotFoundException | InstantiationException |
                             InvocationTargetException | NoSuchMethodException e){
 
-                        logger.warning("Error in loading main class. Verify that it extends Plugin.");
+                        logger.warn("Error in loading main class. Verify that it extends Plugin.");
 
                     } catch (ClassCastException | IOException e){
 
-                        logger.warning(e.getLocalizedMessage());
+                        logger.warn(e.getLocalizedMessage());
 
                     }
                 }

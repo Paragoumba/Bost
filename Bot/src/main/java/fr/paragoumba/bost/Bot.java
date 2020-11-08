@@ -9,15 +9,16 @@ import net.dv8tion.jda.api.requests.GatewayIntent;
 import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.security.auth.login.LoginException;
 import java.io.IOException;
-import java.util.logging.Logger;
 
 public class Bot {
 
     private static JDA jda;
-    private static final Logger logger = Logger.getGlobal();
+    private static final Logger logger = LoggerFactory.getLogger("Bost");
 
     public static void main(String[] args){
 
@@ -36,18 +37,24 @@ public class Bot {
 
             jda.awaitReady();
 
+            logger.info("Loading plugins.");
+
             PluginManager.loadPlugins();
+
+            logger.info("Enabling plugins.");
             PluginManager.enablePlugins();
+
+            logger.info("Finished initializing.");
 
         } catch (LoginException | IOException e){
 
-            logger.severe(e.getLocalizedMessage());
+            logger.error(e.getLocalizedMessage());
             System.exit(1);
 
         } catch (Exception e){
 
-            logger.severe("Fatal error exiting.");
-            logger.severe(e.getLocalizedMessage());
+            logger.error("Fatal error exiting.");
+            logger.error(e.getLocalizedMessage());
             e.printStackTrace();
             System.exit(1);
 

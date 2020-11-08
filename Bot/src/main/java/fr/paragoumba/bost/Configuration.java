@@ -1,13 +1,13 @@
 package fr.paragoumba.bost;
 
 import fr.paragoumba.bost.api.Plugin;
+import org.slf4j.Logger;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
 import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
-import java.util.logging.Logger;
 
 public class Configuration {
 
@@ -45,7 +45,10 @@ public class Configuration {
 
                 if (!parent.mkdirs()){
 
-                    new IOException("Could not create " + configFile.getName() + " config file.").printStackTrace();
+                    logger.error("Could not create " + configFile.getName() + " config file.\n" +
+                            "Config for this plugin will work but there is no default\n" +
+                            "config and modifications will not be saved.");
+
                     return;
 
                 }
@@ -188,8 +191,7 @@ public class Configuration {
 
         } catch (FileNotFoundException e){
 
-            logger.warning("Error while trying to load config. Default one will be used.");
-            e.printStackTrace();
+            logger.warn("Error while trying to load config. Default one will be used.");
 
         }
     }
@@ -210,7 +212,7 @@ public class Configuration {
 
         } catch (IOException e){
 
-            logger.warning("Error while trying to save config.");
+            logger.warn("Error while trying to save config.");
             e.printStackTrace();
 
         }

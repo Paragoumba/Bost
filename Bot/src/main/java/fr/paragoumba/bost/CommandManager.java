@@ -12,7 +12,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
-import java.util.logging.Logger;
+import org.slf4j.Logger;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -33,7 +33,7 @@ public class CommandManager {
 
         if (commands.containsKey(command)){
 
-            Logger.getGlobal().warning("Command '" + command + "' already exists.");
+            logger.warn("Command '" + command + "' already exists.");
             return;
 
         }
@@ -105,7 +105,7 @@ public class CommandManager {
 
         } catch (Exception e){
 
-            logger.severe("Error while trying to execute command " + command
+            logger.error("Error while trying to execute command " + command
                     + " with following parameters: [\"" + String.join("\", \"", args) + "\"].");
             e.printStackTrace();
 
