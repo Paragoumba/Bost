@@ -19,11 +19,11 @@
         </encoder>
     </appender>
 
-    <logger name="Bost" level="error">
-        <appender-ref ref="FILE"/>
+    <logger name="Bost" level="trace">
+        <appender-ref ref="STDOUT"/>
     </logger>
 
-    <root level="info">
-        <appender-ref ref="STDOUT"/>
+    <root level="error">
+        <appender-ref ref="FILE"/>
     </root>
 </configuration>
