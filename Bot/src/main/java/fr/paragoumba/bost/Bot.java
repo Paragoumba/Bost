@@ -37,11 +37,7 @@ public class Bot {
 
             jda.awaitReady();
 
-            logger.info("Loading plugins.");
-
             PluginManager.loadPlugins();
-
-            logger.info("Enabling plugins.");
             PluginManager.enablePlugins();
 
             logger.info("Finished initializing.");
@@ -53,7 +49,7 @@ public class Bot {
 
         } catch (Exception e){
 
-            logger.error("Fatal error exiting.");
+            logger.error("Encountered fatal error, exiting.");
             logger.error(e.getLocalizedMessage());
             e.printStackTrace();
             System.exit(1);

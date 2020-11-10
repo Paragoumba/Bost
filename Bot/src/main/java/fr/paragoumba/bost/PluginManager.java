@@ -23,6 +23,8 @@ public class PluginManager {
 
     static void loadPlugins() throws IOException {
 
+        logger.info("Loading plugins.");
+
         plugins.add(new BostCommands());
 
         File pluginsDir = new File(PluginManager.pluginsDir);
@@ -95,6 +97,8 @@ public class PluginManager {
 
     public static void enablePlugins(){
 
+        logger.info("Enabling plugins.");
+
         for (Plugin plugin : plugins){
 
             plugin.onEnable();
@@ -103,6 +107,8 @@ public class PluginManager {
     }
 
     public static void disablePlugins(){
+
+        logger.info("Disabling plugins.");
 
         for (Plugin plugin : plugins){
 
