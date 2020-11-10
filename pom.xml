@@ -7,6 +7,7 @@
     <groupId>fr.paragoumba.bost</groupId>
     <artifactId>Bost</artifactId>
     <packaging>pom</packaging>
+    <version>1.0</version>
 
     <modules>
         <module>Bot</module>
