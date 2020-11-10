@@ -1,19 +1,26 @@
 package fr.paragoumba.bost;
 
-import fr.paragoumba.bost.api.Plugin;
 import org.slf4j.Logger;
 import org.yaml.snakeyaml.DumperOptions;
 import org.yaml.snakeyaml.Yaml;
 
+import javax.annotation.Nonnull;
 import java.io.*;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 
+/**
+ * This class loads and creates all the config files used by the bot. To load the config file of a plugin,
+ * use {@link fr.paragoumba.bost.api.PluginConfiguration}.
+ */
 public class Configuration {
 
+    /**
+     * Loads the bot's configuration file. If the file doesn't exists, it creates it.
+     */
     Configuration(){
 
-        this(configFile);
+        this(configFileName);
 
         if (map.isEmpty()){
 
@@ -22,27 +29,20 @@ public class Configuration {
         }
     }
 
-    public Configuration(Plugin plugin){
-
-        this(PluginManager.pluginsDir + "/" +
-                plugin.getInfo().getName().replaceAll(
-                        "[\\x00-\\x1F\\x7F\"*/:<>\\\\?|\\u0000]", "_") +
-                "/" + configFile);
-
-    }
-
-    Configuration(String configPath){
+    /**
+     * Loads a config file with the specified path. If the file doesn't exists it is created.
+     * @param configPath The path of the config file to load
+     */
+    protected Configuration(String configPath){
 
         map = new LinkedHashMap<>();
-
-        File configFile = new File(configPath);
+        configFile = new File(configPath);
 
         if (!configFile.exists()){
 
             File parent = configFile.getParentFile();
 
             if (!parent.exists()){
-
                 if (!parent.mkdirs()){
 
                     logger.error("Could not create " + configFile.getName() + " config file.\n" +
@@ -54,28 +54,32 @@ public class Configuration {
                 }
             }
 
-            save(configFile);
+            save();
             return;
 
         }
 
-        load(configFile);
+        load();
 
     }
 
-    private static final String configFile = "config.yml";
+    private static final String configFileName = "config.yml";
+    protected static final String pluginConfigPathTemplate = PluginManager.pluginsDir + "/%p/" + configFileName;
     private static final char separator = '.';
     private static final Logger logger = Bot.getLogger();
 
     private LinkedHashMap<Object, Object> map;
+    private final File configFile;
+    // TODO Implement default config copying
+    private String defaultConfigPath;
 
-    public Object set(String key, Object value){
-
-        if (key == null){
-
-            throw new NullPointerException("Key cannot be null.");
-
-        }
+    /**
+     * Set the value for the given key in the config.
+     * @param key The key for which to set the value
+     * @param value The value to store in the config
+     * @return Return the old value or null if there is no old value
+     */
+    public Object set(@Nonnull String key, Object value){
 
         Object lastSection;
         Object section = lastSection = map;
@@ -111,21 +115,19 @@ public class Configuration {
 
         }
 
-        return ((HashMap) section).put(key.substring(startIndex), value);
+        Object o = ((HashMap) section).put(key.substring(startIndex), value);
+
+        logger.info(map.toString());
+
+        return o;
 
     }
 
-    public Object get(String key){
-
-        if (key == null){
-
-            throw new NullPointerException("Key cannot be null.");
-
-        }
+    public Object get(@Nonnull String key){
 
         if (key.length() == 0){
 
-            return this;
+            return map;
 
         }
 
@@ -157,31 +159,37 @@ public class Configuration {
         }
     }
 
-    public String getString(String key){
+    public String getString(@Nonnull String key){
 
         return (String) get(key);
 
     }
 
-    public void setString(String key, String value){
+    public Object setString(@Nonnull String key, String value) throws IllegalAccessException {
 
-        set(key, value);
+        return set(key, value);
 
     }
 
-    public Integer getInt(String key){
+    public Integer getInt(@Nonnull String key){
 
         return (Integer) get(key);
 
     }
 
-    public void setInt(String key, int value){
+    public Object setInt(@Nonnull String key, int value) throws IllegalAccessException {
 
-        set(key, value);
+        return set(key, value);
 
     }
 
-    private void load(File configFile){
+    private void setDefaultConfigPath(String defaultConfigPath){
+
+
+
+    }
+
+    private void load(){
 
         Yaml yaml = new Yaml();
 
@@ -196,7 +204,9 @@ public class Configuration {
         }
     }
 
-    public void save(File configFile){
+    public void save(){
+
+        logger.info(map.toString());
 
         DumperOptions options = new DumperOptions();
 

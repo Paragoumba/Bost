@@ -4,6 +4,7 @@ import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.DefaultAudioPlayerManager;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackState;
+import fr.paragoumba.bost.api.PluginConfiguration;
 
 import java.util.LinkedList;
 
@@ -105,7 +106,7 @@ public class QueuedAudioPlayer extends DefaultAudioPlayer {
 
     public static String getDuration(AudioTrack track){
 
-        String format = Music.getInstance().getConfig().getString("timeformat");
+        String format = new PluginConfiguration(Music.getInstance()).getString("timeformat");
 
         if (format == null){
 
