@@ -206,8 +206,6 @@ public class Configuration {
 
     public void save(){
 
-        logger.info(map.toString());
-
         DumperOptions options = new DumperOptions();
 
         options.setIndent(2);
