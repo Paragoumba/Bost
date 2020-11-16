@@ -26,9 +26,9 @@ public class AudioLoadResultHandler implements com.sedmelluq.discord.lavaplayer.
 
     }
 
-    private GuildVoiceState voiceState;
-    private String identifier;
-    private MessageChannel channel;
+    private final GuildVoiceState voiceState;
+    private final String identifier;
+    private final MessageChannel channel;
 
     @Override
     public void trackLoaded(AudioTrack track){
