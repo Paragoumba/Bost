@@ -101,25 +101,26 @@ public class AudioLoadResultHandler implements com.sedmelluq.discord.lavaplayer.
     @Override
     public void loadFailed(FriendlyException throwable){
 
+        MessageEmbed message;
+
         if (throwable.severity == FriendlyException.Severity.COMMON){
 
-            MessageEmbed message = new EmbedBuilder()
+            message = new EmbedBuilder()
                     .setTitle(":x: Error when playing track")
                     .setDescription(throwable.getLocalizedMessage())
                     .build();
 
-            channel.sendMessage(message).queue();
-
         } else {
 
-            MessageEmbed message = new EmbedBuilder()
+            message = new EmbedBuilder()
                     .setTitle(":x: Error when playing track")
                     .setDescription("Sorry :woman_shrugging:")
                     .build();
 
-            channel.sendMessage(message).queue();
-
         }
+
+        channel.sendMessage(message).queue();
+
     }
 
     private void sendTrackEmbed(AudioTrack track){
