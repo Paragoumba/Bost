@@ -16,7 +16,7 @@ import java.util.LinkedHashMap;
 public class Configuration {
 
     /**
-     * Loads the bot's configuration file. If the file doesn't exists, it creates it.
+     * Loads the bot's configuration file. If the file doesn't exist, it creates it.
      */
     Configuration(){
 
@@ -30,7 +30,7 @@ public class Configuration {
     }
 
     /**
-     * Loads a config file with the specified path. If the file doesn't exists it is created.
+     * Loads a config file with the specified path. If the file doesn't exist it is created.
      * @param configPath The path of the config file to load
      */
     protected Configuration(String configPath){
