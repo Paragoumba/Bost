@@ -99,7 +99,7 @@ public class CommandManager {
                         .setColor(EmbedColor.ERROR)
                         .build();
 
-                channel.sendMessage(message).queue();
+                channel.sendMessageEmbeds(message).queue();
 
             }
 

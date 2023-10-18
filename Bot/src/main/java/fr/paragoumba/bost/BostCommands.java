@@ -9,6 +9,8 @@ import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 
+import java.util.Arrays;
+
 import static fr.paragoumba.bost.CommandManager.registerCommand;
 
 public class BostCommands extends Plugin {
@@ -50,9 +52,13 @@ public class BostCommands extends Plugin {
 
                     CommandInfo info = c.getInfo();
 
-                    builder.append(info.getCommand()).append(":\n")
-                            .append(info.getUsage()).append("\n\n");
+                    builder.append(info.getCommand()).append(":\n");
 
+                    for (String commandUsage : info.getUsage()){
+                        builder.append(commandUsage).append('\n');
+                    }
+
+                    builder.append('\n');
                 }
 
                 MessageEmbed message = new EmbedBuilder()
@@ -61,7 +67,7 @@ public class BostCommands extends Plugin {
                         .setColor(EmbedColor.INFO)
                         .build();
 
-                channel.sendMessage(message).queue();
+                channel.sendMessageEmbeds(message).queue();
 
                 return true;
 
