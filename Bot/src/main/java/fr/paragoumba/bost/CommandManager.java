@@ -106,8 +106,7 @@ public class CommandManager {
         } catch (Exception e){
 
             logger.error("Error while trying to execute command " + command
-                    + " with following parameters: [\"" + String.join("\", \"", args) + "\"].");
-            e.printStackTrace();
+                    + " with following parameters: [\"" + String.join("\", \"", args) + "\"].", e);
 
         }
     }

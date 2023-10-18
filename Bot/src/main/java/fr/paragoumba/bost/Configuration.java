@@ -220,8 +220,7 @@ public class Configuration {
 
         } catch (IOException e){
 
-            logger.warn("Error while trying to save config.");
-            e.printStackTrace();
+            logger.warn("Error while trying to save config.", e);
 
         }
     }

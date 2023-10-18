@@ -49,9 +49,7 @@ public class Bot {
 
         } catch (Exception e){
 
-            logger.error("Encountered fatal error, exiting.");
-            logger.error(e.getLocalizedMessage());
-            e.printStackTrace();
+            logger.error("Encountered fatal error, exiting.", e);
             System.exit(1);
 
         }
