@@ -40,6 +40,10 @@
             <name>jcenter-bintray</name>
             <url>https://jcenter.bintray.com</url>
         </repository>
+        <repository>
+            <id>jitpack</id>
+            <url>https://jitpack.io</url>
+        </repository>
     </repositories>
 
     <dependencies>
@@ -49,8 +53,9 @@
             <scope>provided</scope>
         </dependency>
         <dependency>
-            <groupId>com.sedmelluq</groupId>
+            <groupId>dev.arbjerg</groupId>
             <artifactId>lavaplayer</artifactId>
+            <version>2.0.2</version>
         </dependency>
     </dependencies>
 </project>
