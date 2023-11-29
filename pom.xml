@@ -19,7 +19,7 @@
         <maven.jar.plugin.version>3.2.0</maven.jar.plugin.version>
         <maven.assembly.plugin.version>3.3.0</maven.assembly.plugin.version>
         <net.dv8tion.JDA.version>4.4.1_353</net.dv8tion.JDA.version>
-        <ch.qos.logback.logback-classic.version>1.2.3</ch.qos.logback.logback-classic.version>
+        <ch.qos.logback.logback-classic.version>1.3.12</ch.qos.logback.logback-classic.version>
         <org.snakeyaml.snakeyaml.version>2.0</org.snakeyaml.snakeyaml.version>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
